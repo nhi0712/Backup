@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachelorarbeit Explorer: KI & Führungskraft</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            200: '#bae0fd',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            50: '#fdf4ff',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 420px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<!-- Chosen Palette: Warm Neutral & Slate with Deep Sky & Indigo Accents -->
+<!-- Application Structure Plan: 
+     1. Hero & Central Problem Statement: Features a prominent card with the exact, current "Forschungsanliegen" and the 3 Core Paradoxes (Decisions, Knowledge, Relationships).
+     2. Interactive 4-Dimension Framework: Allows deep diving into (1) Rollenevolution, (2) Leadership Skills, (3) Wissensmanagement, (4) Zwischenmenschliche Dynamik.
+     3. Dynamic Skill Matrix & Chart: Visualizes the transformation of skill priorities using a Chart.js Radar Chart (Traditional vs. AI Era).
+     4. Comparative Paradigm Matrix: Dynamic table comparing traditional vs AI-augmented leadership with search/filter capabilities.
+     5. Methodological Research Guide: Interactive explorer for Qualitative, Quantitative, and SLR designs tailored for a BA.
+     6. Operationalization Toolbox: Searchable table of constructs, indicators, and established measurement scales.
+-->
+<!-- Visualization & Content Choices:
+     - Central Purpose Box: Clear highlight of the scientific core statement.
+     - Skill Profile Radar Chart: Chart.js Canvas to contrast traditional vs. modern capability requirements.
+     - Accordions & Filter Tabs: Clean HTML/JS without heavy external dependencies or SVGs.
+     - Confirming NO SVG/Mermaid used.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white custom-scrollbar">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="bg-brand-600 text-white font-bold text-xs px-2.5 py-1 rounded-md tracking-wider uppercase">BA-Leitfaden</span>
+                <h1 class="text-base sm:text-lg font-bold text-slate-900 truncate">Transformation der Führungskraft durch KI</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#anliegen" class="text-slate-600 hover:text-brand-600 transition">Anliegen & Paradoxien</a>
+                <a href="#dimensionen" class="text-slate-600 hover:text-brand-600 transition">4 Dimensionen</a>
+                <a href="#skills-chart" class="text-slate-600 hover:text-brand-600 transition">Kompetenz-Vergleich</a>
+                <a href="#paradigmen" class="text-slate-600 hover:text-brand-600 transition">Paradigmen</a>
+                <a href="#methodik" class="text-slate-600 hover:text-brand-600 transition">Forschungsdesigns</a>
+                <a href="#operationalisierung" class="text-slate-600 hover:text-brand-600 transition">Operationalisierung</a>
+            </nav>
+            <a href="#anliegen" class="md:hidden bg-slate-100 p-2 rounded-lg text-slate-600 text-xs font-semibold">Menü</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- HERO & CENTRAL RESEARCH CONCERN -->
+        <section id="anliegen" class="space-y-8 pt-4">
+            <div class="bg-gradient-to-br from-slate-900 via-brand-900 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="inline-flex items-center space-x-2 bg-brand-500/20 text-brand-200 border border-brand-500/30 px-3 py-1 rounded-full text-xs font-medium mb-4">
+                    <span>&#10024; Konkretes Forschungsanliegen für deine Bachelorarbeit</span>
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                    Das zentrale wissenschaftliche Anliegen
+                </h2>
+                
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl font-light mb-8">
+                    Die Einführung von KI verändert nicht nur Werkzeuge, sondern erschüttert das traditionelle Rollenverständnis von Führungskräften. Dieses Forschungsvorhaben untersucht die systemische Transformation von Führungsverhalten, Kompetenzen und Beziehungsdynamiken.
+                </p>
+
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-7 text-slate-100 space-y-3">
+                    <span class="text-xs font-bold tracking-wider text-brand-300 uppercase">Zentrale Problemstellung (Exposé-Formulierung):</span>
+                    <blockquote class="text-base sm:text-lg font-medium italic leading-snug text-white">
+                        „Es gilt zu untersuchen, wie sich das rollenbezogene Verhalten, die erforderlichen Kompetenzprofile, der Umgang mit Wissen sowie die zwischenmenschliche Interaktion von Führungskräften durch die Integration von KI verändern und welche Führungsstrategien erforderlich sind, um Effizienzgewinne mit organisationaler Resilienz und Mitarbeiterengagement zu harmonisieren.“
+                    </blockquote>
+                </div>
+            </div>
+
+            <!-- Intro Section Paragraph -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-lg font-bold text-slate-900">Kontextualisierung: Die 3 Kernparadoxien der KI-Transformation</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Um das Thema in deiner Bachelorarbeit wissenschaftlich fundiert zu begründen, solltest du die Transformation nicht als reinen Effizienzgewinn darstellen, sondern als Spannungsfeld dreier zentraler Paradoxien. Diese verdeutlichen die wissenschaftliche Dringlichkeit deines Forschungsthemas.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-lg">&#9878;</span>
+                            <h4 class="font-bold text-slate-900 text-sm">Das Entscheidungsparadoxon</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            KI beschleunigt Entscheidungszyklen enorm, birgt aber das Risiko von Verunsicherung, Unstransparenz und schleichendem Verantwortungsverlust (Accountability Diffusion).
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-lg">&#129504;</span>
+                            <h4 class="font-bold text-slate-900 text-sm">Das Wissensparadoxon</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Generative KI macht Wissen sofort verfügbar, führt aber bei unkritischer Nutzung zu kognitivem Verfall („Cognitive Offloading“) und Verlust kritischer Urteilskraft.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-lg">&#129309;</span>
+                            <h4 class="font-bold text-slate-900 text-sm">Das Beziehungsparadoxon</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Die Entlastung von Routineaufgaben schafft Freiräume für Empathie, kann aber bei unsystematischem Einsatz zu sozialer Entfremdung und Angst vor Arbeitsplatzverlust führen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 TRANSFORMATION DIMENSIONS -->
+        <section id="dimensionen" class="space-y-6">
+            <div class="border-l-4 border-brand-600 pl-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Die 4 Kerndimensionen des Wandelungsbedarfs</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                    Dieser Abschnitt strukturiert die konkreten Auswirkungen von KI auf die Führungskraft in vier verhaltensbezogene Schwerpunkte. Klicke auf eine Dimension, um Details zu erkunden.
+                </p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-2">
+                <button onclick="switchTab('dim1')" id="btn-dim1" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brand-600 text-white shadow-sm transition">
+                    1. Verhalten & Rolle
+                </button>
+                <button onclick="switchTab('dim2')" id="btn-dim2" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                    2. Leadership Skills
+                </button>
+                <button onclick="switchTab('dim3')" id="btn-dim3" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                    3. Umgang mit Wissen
+                </button>
+                <button onclick="switchTab('dim4')" id="btn-dim4" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">
+                    4. Umgang mit Menschen
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="tab-contents" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm min-h-[300px]">
+                
+                <!-- Dim 1 Content -->
+                <div id="dim1" class="tab-content space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900">Dimension 1: Führungsverhalten & Rollenevolution</h3>
+                        <span class="bg-brand-50 text-brand-700 text-xs font-semibold px-2.5 py-1 rounded-md">Vom Anweiser zum Regisseur</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Die Führungskraft verlässt die Rolle des alleinigen Wissensträgers und Fach-Kontrolleurs. An ihre Stelle tritt ein hybrides Zusammenwirken von Mensch und KI („Schulter an Schulter“).
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs font-bold text-brand-600 block mb-1">RAHMUNG</span>
+                            <h4 class="font-bold text-slate-900 text-sm mb-1">Strategische Leitplanken</h4>
+                            <p class="text-xs text-slate-600">Definition von Human-in-the-Loop-Prozessen, ethischen Grenzen und Haftungsregeln für KI-Einsatz.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs font-bold text-brand-600 block mb-1">REGIE</span>
+                            <h4 class="font-bold text-slate-900 text-sm mb-1">Systemische Orchestrierung</h4>
+                            <p class="text-xs text-slate-600">Steuerung des Zusammenspiels von menschlicher Expertise und KI-Systemen zur Optimierung von Workflows.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs font-bold text-brand-600 block mb-1">RESONANZ</span>
+                            <h4 class="font-bold text-slate-900 text-sm mb-1">Sinnstiftung & Empathie</h4>
+                            <p class="text-xs text-slate-600">Schaffen von interpersonalen Räumen für Emotionen, Werte und Feedback, die maschinell nicht substituierbar sind.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dim 2 Content -->
+                <div id="dim2" class="tab-content hidden space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900">Dimension 2: Leadership Skills & Metakognition</h3>
+                        <span class="bg-accent-50 text-accent-700 text-xs font-semibold px-2.5 py-1 rounded-md">Vom Fachwissen zur Urteilskraft</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Reines Faktenwissen verliert durch KI rasch an Wert. Es entstehen neuartige Anforderungen an kritische Reflexionsfähigkeit und Systemverständnis.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start space-x-3">
+                            <span class="text-brand-600 font-bold text-base">&#10004;</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Algorithmic Interpretability & Critical Judgment</h4>
+                                <p class="text-xs text-slate-600">Fähigkeit, KI-Ergebnisse nicht unkritisch zu übernehmen, sondern auf Biases (Verzerrungen) und Halluzinationen zu hinterfragen.</p>
+                            </div>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start space-x-3">
+                            <span class="text-brand-600 font-bold text-base">&#10004;</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">AI-Savvy Leadership</h4>
+                                <p class="text-xs text-slate-600">Technologische Souveränität gepaart mit der Kompetenz, KI-Anwendungen strategisch für Teamentwicklung und Unternehmensziele einzusetzen.</p>
+                            </div>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-start space-x-3">
+                            <span class="text-brand-600 font-bold text-base">&#10004;</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Metakognitive Selbstregulation</h4>
+                                <p class="text-xs text-slate-600">Die Fähigkeit zur Reflexion des eigenen Denken: Wann delegiere ich kognitive Last an KI und wann ist eigenes, tiefes Denken zwingend?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dim 3 Content -->
+                <div id="dim3" class="tab-content hidden space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900">Dimension 3: Umgang mit Wissen & Information</h3>
+                        <span class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-md">Vom Wissensmonopol zum Lernraum</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Wissen ist kein Machtinstrument mehr, da generative Sprachmodelle Expertise demokratisieren. Die Herausforderung verlagert sich auf die Vermeidung von kognitivem Verfall.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-200">
+                            <h4 class="font-bold text-amber-900 text-sm mb-1">Gefahr: Cognitive Offloading</h4>
+                            <p class="text-xs text-amber-800 leading-relaxed">
+                                Überlassen Führungskräfte die kritische Problemlösung zu stark der KI, verkümmern eigene analytische Fähigkeiten und organisatorische Lerneffekte im Team.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-900 text-sm mb-1">Lösung: Unterbrechungsroutinen</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Etablierung relevanter Reflexionspausen (z. B. kollektives Challengen von KI-Outputs), um implizites Wissen im Team aufrechtzuerhalten und zu schärfen.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dim 4 Content -->
+                <div id="dim4" class="tab-content hidden space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900">Dimension 4: Zwischenmenschliche Dynamik & Interaktion</h3>
+                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md">Empathische Befähigung</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Je mehr operative Prozesse von Algorithmen übernommen werden, desto wichtiger wird psychologische Sicherheit und die Begleitung menschlicher Ängste.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-900 text-sm mb-1">Psychologische Sicherheit vor KI-Substitution</h4>
+                            <p class="text-xs text-slate-600">Mitarbeitende benötigen Gewissheit, dass der KI-Einsatz nicht zu Überwachung oder Entwertung ihrer Arbeit führt, sondern zur Befähigung dient.</p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-900 text-sm mb-1">Indirekte Wirkungskette über AI-Savvy Leadership</h4>
+                            <p class="text-xs text-slate-600">Studien zeigen: KI-souveräne Führungskräfte steigern Mitarbeiterengagement nicht direkt durch Technologie, sondern indem sie Ängste abbauen und Lernkulturen fördern.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VISUALIZATION / CHART SECTION -->
+        <section id="skills-chart" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+            <div class="border-l-4 border-brand-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">Kompetenzverschiebung der Führungskraft im Vergleich</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                    Diese Chart-Visualisierung verdeutlicht den relativen Wandel der Prioritäten im Führungskraft-Anforderungsprofil vor und nach der breiten KI-Integration.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Chart Container -->
+                <div class="lg:col-span-7 w-full flex justify-center">
+                    <div class="chart-container">
+                        <canvas id="leadershipRadarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Interactive Explanation Card -->
+                <div class="lg:col-span-5 bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <h3 class="text-base font-bold text-slate-900">Zentrale Erkenntnis für deine Thesis</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Fachwissen und direkte Leistungskontrolle treten in den Hintergrund. Kognitive Reflexion (Metakognition), Algorithmen-Verständnis sowie emotionale Intelligenz gewinnen drastisch an Bedeutung.
+                    </p>
+
+                    <div class="space-y-2 border-t border-slate-200 pt-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="flex items-center space-x-2 text-slate-700 font-medium">
+                                <span class="w-3 h-3 rounded-full bg-slate-400 inline-block"></span>
+                                <span>Traditionelle Führung</span>
+                            </span>
+                            <span class="text-slate-500 font-mono">Fokus: Kontrolle & Fachlichkeit</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="flex items-center space-x-2 text-slate-700 font-medium">
+                                <span class="w-3 h-3 rounded-full bg-brand-600 inline-block"></span>
+                                <span>KI-gestützte Führung</span>
+                            </span>
+                            <span class="text-slate-500 font-mono">Fokus: Urteilskraft & Empathie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARADIGM COMPARISON TABLE -->
+        <section id="paradigmen" class="space-y-6">
+            <div class="border-l-4 border-brand-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">Systematischer Vergleich der Führungsparadigmen</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                    Gegenüberstellung der verhaltensbezogenen Veränderungen zwischen traditioneller und KI-gestützter Führung.
+                </p>
+            </div>
+
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+                <table class="w-full text-left text-xs sm:text-sm text-slate-600">
+                    <thead class="bg-slate-100 text-slate-900 font-bold uppercase text-[11px] tracking-wider border-b border-slate-200">
+                        <tr>
+                            <th class="py-3.5 px-4">Dimension</th>
+                            <th class="py-3.5 px-4 bg-slate-200/50">Traditionelles Paradigma</th>
+                            <th class="py-3.5 px-4 text-brand-700 bg-brand-50/50">KI-gestütztes Paradigma</th>
+                            <th class="py-3.5 px-4 hidden md:table-cell">Wirkungsmechanismus in der Praxis</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 font-normal">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-3.5 px-4 font-bold text-slate-900">Rollenverständnis</td>
+                            <td class="py-3.5 px-4 bg-slate-50/50">Direktiver Entscheider & Kontrolleuer von Ergebnissen</td>
+                            <td class="py-3.5 px-4 font-semibold text-brand-800 bg-brand-50/30">Orchestrator hybrider Mensch-KI-Systeme („Regisseur“)</td>
+                            <td class="py-3.5 px-4 hidden md:table-cell text-xs text-slate-500">Verschiebung von Ergebniskontrolle hin zum Prozess-Design.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-3.5 px-4 font-bold text-slate-900">Entscheidungsfindung</td>
+                            <td class="py-3.5 px-4 bg-slate-50/50">Erfahrungswissen, Intuition & Hierarchie</td>
+                            <td class="py-3.5 px-4 font-semibold text-brand-800 bg-brand-50/30">Daten- & KI-gestützte Evidenz mit menschlicher Aufsicht</td>
+                            <td class="py-3.5 px-4 hidden md:table-cell text-xs text-slate-500">Höhere Geschwindigkeit; Plausibilisierung wird Kernaufgabe.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-3.5 px-4 font-bold text-slate-900">Wissensmanagement</td>
+                            <td class="py-3.5 px-4 bg-slate-50/50">Wissen als Macht- & Autoritätsbasis</td>
+                            <td class="py-3.5 px-4 font-semibold text-brand-800 bg-brand-50/30">Wissen als kollaborative Ressource & Rekombination</td>
+                            <td class="py-3.5 px-4 hidden md:table-cell text-xs text-slate-500">Aufbrechen von Silos; Fokus auf Prompting & Synthese.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-3.5 px-4 font-bold text-slate-900">Kompetenzfokus</td>
+                            <td class="py-3.5 px-4 bg-slate-50/50">Fach- & Branchenerfahrung; statisches Wissen</td>
+                            <td class="py-3.5 px-4 font-semibold text-brand-800 bg-brand-50/30">Lerntempo, Metakognition, AI Literacy</td>
+                            <td class="py-3.5 px-4 hidden md:table-cell text-xs text-slate-500">Schnellere Entwertung von Faktenwissen; Aufwertung der Urteilskraft.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-3.5 px-4 font-bold text-slate-900">Teaminteraktion</td>
+                            <td class="py-3.5 px-4 bg-slate-50/50">Aufgabendelegation & periodische Berichte</td>
+                            <td class="py-3.5 px-4 font-semibold text-brand-800 bg-brand-50/30">Co-Kreation („Schulter an Schulter“); Moderation</td>
+                            <td class="py-3.5 px-4 hidden md:table-cell text-xs text-slate-500">Bedarf hoher psychologischer Sicherheit & Transparenz.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- METHODOLOGY & RESEARCH DESIGNS -->
+        <section id="methodik" class="space-y-6">
+            <div class="border-l-4 border-brand-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">Empfohlene Forschungsansätze für deine BA</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                    3 konkrete methodische Pfade inklusive Arbeitstitel, Forschungsfrage und Studiendesign für deine Bachelorarbeit.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Option 1: Qualitative Study -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-blue-50 text-blue-700 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase">Empirisch-Explorativ</span>
+                            <span class="text-xs text-slate-400 font-mono">Option A</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base leading-snug">Qualitative Expertenstudie</h3>
+                        <div class="space-y-2 text-xs">
+                            <p class="text-slate-500 font-semibold uppercase text-[10px]">Arbeitstitel:</p>
+                            <p class="text-slate-800 italic bg-slate-50 p-2 rounded border border-slate-100">„Vom Delegierenden zum Orchestrator: Eine qualitative Untersuchung zum Wandel des Führungsverhaltens beim Einsatz generativer KI.“</p>
+                        </div>
+                        <div class="space-y-1 text-xs text-slate-600">
+                            <p class="font-semibold text-slate-900">Methodik:</p>
+                            <p>8–12 semistrukturierte Experteninterviews mit Führungskräften; Qualitative Inhaltsanalyse nach Mayring.</p>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100">
+                        <span class="text-xs font-semibold text-brand-600">Ideal für:</span>
+                        <p class="text-[11px] text-slate-500">Tiefes Verständnis individueller Rollenkonflikte und Verhaltensanpassungen.</p>
+                    </div>
+                </div>
+
+                <!-- Option 2: Quantitative Study -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-purple-50 text-purple-700 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase">Empirisch-Kausal</span>
+                            <span class="text-xs text-slate-400 font-mono">Option B</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base leading-snug">Quantitative Befragung</h3>
+                        <div class="space-y-2 text-xs">
+                            <p class="text-slate-500 font-semibold uppercase text-[10px]">Arbeitstitel:</p>
+                            <p class="text-slate-800 italic bg-slate-50 p-2 rounded border border-slate-100">„AI-Savvy Leadership und Mitarbeiterengagement: Der mediierende Effekt der KI-Nutzungsintensität.“</p>
+                        </div>
+                        <div class="space-y-1 text-xs text-slate-600">
+                            <p class="font-semibold text-slate-900">Methodik:</p>
+                            <p>Online-Befragung von Mitarbeitenden ($N \ge 100$); Kausalanalyse mittels Regressionsmodellen (SOR-Modell).</p>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100">
+                        <span class="text-xs font-semibold text-purple-600">Ideal für:</span>
+                        <p class="text-[11px] text-slate-500">Empirische Überprüfung von Hypothesen und statistischen Zusammenhängen.</p>
+                    </div>
+                </div>
+
+                <!-- Option 3: Literature Review -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-emerald-50 text-emerald-700 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase">Theoretisch-Konzeptionell</span>
+                            <span class="text-xs text-slate-400 font-mono">Option C</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base leading-snug">Systematisches Literatur-Review</h3>
+                        <div class="space-y-2 text-xs">
+                            <p class="text-slate-500 font-semibold uppercase text-[10px]">Arbeitstitel:</p>
+                            <p class="text-slate-800 italic bg-slate-50 p-2 rounded border border-slate-100">„Menschliche Urteilskraft vs. Kognitives Offloading: Eine systematische Literaturanalyse zum Wandel der Entscheidungsarchitektur.“</p>
+                        </div>
+                        <div class="space-y-1 text-xs text-slate-600">
+                            <p class="font-semibold text-slate-900">Methodik:</p>
+                            <p>Systematische Analyse nach PRISMA-Richtlinien aktueller Peer-Reviewed Arbeiten (Scopus/Web of Science).</p>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100">
+                        <span class="text-xs font-semibold text-emerald-600">Ideal für:</span>
+                        <p class="text-[11px] text-slate-500">Arbeiten ohne eigenen Datenzugang; Synthese des aktuellen Forschungsstands (2023–2026).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OPERATIONALIZATION MATRIX -->
+        <section id="operationalisierung" class="space-y-6">
+            <div class="border-l-4 border-brand-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">Operationalisierungs-Toolbox für empirische Arbeiten</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                    Suchbare Konstrukte, Indikatoren und Beispielsitems zur Vorbereitung deines Fragebogens oder Interviewleitfadens.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 space-y-4">
+                <!-- Search Input -->
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <input type="text" id="searchInput" onkeyup="filterConstructs()" placeholder="Konstrukt oder Indikator suchen..." class="w-full sm:w-72 text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <span class="text-xs text-slate-400">Zeige messbare Variablen der Forschung</span>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm text-slate-600" id="constructTable">
+                        <thead class="bg-slate-100 text-slate-900 font-bold uppercase text-[11px] tracking-wider border-b border-slate-200">
+                            <tr>
+                                <th class="py-3 px-3">Konstrukt</th>
+                                <th class="py-3 px-3">Operationalisierung / Indikatoren</th>
+                                <th class="py-3 px-3">Beispielsitem / Messansatz</th>
+                                <th class="py-3 px-3">Literaturbasis</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 font-normal">
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3 px-3 font-bold text-slate-900">AI-Savvy Leadership</td>
+                                <td class="py-3 px-3">Vorleben von KI-Anwendungen, Bereitstellen von Lernräumen, ethische Grenzziehung</td>
+                                <td class="py-3 px-3 italic">„Meine Führungskraft zeigt aktiv auf, wie KI-Tools zur Lösung komplexer Aufgaben genutzt werden können.“</td>
+                                <td class="py-3 px-3 text-xs font-mono text-slate-500">Quttainah et al. (2025); Tuan (2025)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3 px-3 font-bold text-slate-900">Algorithmic Interpretability</td>
+                                <td class="py-3 px-3">Verstehen von Datenherkunft, Erkennen von Halluzinationen/Bias, kritische Hinterfragung</td>
+                                <td class="py-3 px-3 italic">„Ich verlasse mich erst auf KI-generierte Daten, wenn ich deren Logik und Quellen plausibilisieren kann.“</td>
+                                <td class="py-3 px-3 text-xs font-mono text-slate-500">MDPI Review (2026); SLR (2025)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3 px-3 font-bold text-slate-900">Cognitive Offloading</td>
+                                <td class="py-3 px-3">Reduktion eigener Denkaufwände, unkritische Übernahme von Ausgaben</td>
+                                <td class="py-3 px-3 italic">„Bei der Erstellung von Strategiepapieren übernehme ich KI-Vorschläge meist ohne tiefe eigene Überarbeitung.“</td>
+                                <td class="py-3 px-3 text-xs font-mono text-slate-500">APA Monitor (2026); Cukurova (2026)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3 px-3 font-bold text-slate-900">Digital Self-Efficacy</td>
+                                <td class="py-3 px-3">Vertrauen in eigene Prompting-Skills, Bewältigung technischer Hürden</td>
+                                <td class="py-3 px-3 italic">„Ich fühle mich kompetent genug, neuartige KI-Tools eigenständig in meine Arbeitsabläufe zu integrieren.“</td>
+                                <td class="py-3 px-3 text-xs font-mono text-slate-500">Emerald DIT Study (2026)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3 px-3 font-bold text-slate-900">Ethical AI Governance</td>
+                                <td class="py-3 px-3">Einhaltung von Datenschutzvorgaben, Transparenz, Sicherstellung menschlicher Aufsicht</td>
+                                <td class="py-3 px-3 italic">„In unserem Team ist klar geregelt, welche vertraulichen Daten niemals in externe KI-Systeme eingegeben werden dürfen.“</td>
+                                <td class="py-3 px-3 text-xs font-mono text-slate-500">Tabbasum & Sharjeel (2026)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="font-semibold text-slate-300">Wissenschaftlicher Forschungs-Explorer für Bachelorarbeiten</p>
+                <p class="text-slate-500 mt-0.5">Themenfeld: Künstliche Intelligenz, Führungskraft & Transformationsmanagement</p>
+            </div>
+            <p class="text-slate-500">&copy; 2026 Bachelorarbeit Support. Entwickelt zur methodischen Strukturierung.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // Show current
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Reset button styles
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+        }
+
+        // Search filter for operationalization constructs table
+        function filterConstructs() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('constructTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let showRow = false;
+                const tds = tr[i].getElementsByTagName('td');
+                for (let j = 0; j < tds.length; j++) {
+                    if (tds[j]) {
+                        if (tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                            showRow = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = showRow ? "" : "none";
+            }
+        }
+
+        // Initialize Chart.js Radar Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('leadershipRadarChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Fach- & Detailwissen',
+                        'Direkte Leistungskontrolle',
+                        'Algorithmen-Interpretationskraft',
+                        'Metakognition & Urteilskraft',
+                        'Empathie & Psycholog. Sicherheit',
+                        'Strategische Rahmung (Governance)'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Traditionelle Führungskraft',
+                            data: [90, 85, 20, 45, 60, 40],
+                            fill: true,
+                            backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                            borderColor: 'rgba(148, 163, 184, 1)',
+                            pointBackgroundColor: 'rgba(148, 163, 184, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(148, 163, 184, 1)'
+                        },
+                        {
+                            label: 'KI-gestützte Führungskraft',
+                            data: [40, 30, 90, 95, 90, 85],
+                            fill: true,
+                            backgroundColor: 'rgba(2, 132, 199, 0.2)',
+                            borderColor: 'rgba(2, 132, 199, 1)',
+                            pointBackgroundColor: 'rgba(2, 132, 199, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(2, 132, 199, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + ' % Relevanz';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: '#e2e8f0'
+                            },
+                            grid: {
+                                color: '#f1f5f9'
+                            },
+                            pointLabels: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    size: 10,
+                                    weight: '600'
+                                },
+                                color: '#334155'
+                            },
+                            ticks: {
+                                display: false,
+                                max: 100,
+                                min: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
