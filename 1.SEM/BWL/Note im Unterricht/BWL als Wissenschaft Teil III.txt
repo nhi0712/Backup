@@ -1,0 +1,88 @@
+Unternehmen als Zielsysteme
+1- BIP (Bruttoinlandsprodukt): Begriff: Kernziffer
+
++ Alle Aussagen sind von Zielsystemen abhängig
+
+
+-------
+21.11.24
+1. Insolvenzgründe
++ Akute Zahlungsunfähigkeit
++ drohende Zahlungsunfähigkeit
++ Vermögenslosigkeit (Eigenkapital <0)
+
+
+2. Wertschöpfung im Unternehmen
+
+
+
+3. Vermögensmehrung vs. Liquidität (Zahlungsfähigkeit)
+
+4. Verhaltensgrundsätze
+
+5. Unternehmensgründung: Ziel -> Vermögensmehrung der Unternehmer und Kapitalgeber.
+ + Stakeholder-Ansatz: Banken/Investoren + MA + Eigentümer + Öffentlichkeit + Kunden + Lieferanten  --> Unternehmen-Management
+
+
+6. Business Process Reengineering
++ Kernkompetenz: Kompetenzen von einem Unternehmen, die von Sicht der Kunden wichtig sind. (z.B. SAP - ERP-System)
++ Ziele, Methode und Umsetzung
+-> Ablauf und Aufbauorganisation wird hinsichtlich ihrer effizienten Orientierung an den zentralen Geschäftsprozessen analysiert.
+-> Ziel von der Analyse: einen Wert für Kunden zu schaffen.
+-> Kernprozess, der für die Kunden einen Mehrwert schafft ->zum zentralen Strukturierungskriterium der Organisation zu orientieren, Elimination von den anderen Prozessen.
+-> Einsatz von IT -> Medienbrüche zu reduzieren und Minimieren der Anzahl der organisatorischen Schnittstellen.
+-> Reorganisation der Abteilung reicht nicht, sondern ein radikales Neugestalten der bestehenden Prozessen ist notwendig.
+
+
+----------------------------
+BPR Übungen
+1.Ziele eines Business Process Reengineering:
++ Analyse von Ablauf- und Aufbauorganisation wird hinsichtlich ihrer effizienten Orientierung an den zentralen Geschäftsprozessen durchgeführt. Damit kann das Unternehmen einen Wert für Kunden schaffen.
++ Durch den Einsatz von IT werden dann die Geschäftsprozesse reorganisiert sowie umfassende organisatorische Änderung vorgenommen. --> Minimieren von Anzahl der organisatorischen Schnittstellen.  
++ Allgemeines Ziel: Steigerung der Qualität
++ Gewinnmehrung
+
+2. 4 "R":
++ Renewing (Erneuerung): Bewertung und Erneuerung der Kernprozesse, neue Festlegung der Kerngeschäftsprozesse.
+Beispiel: Schulung???
+
++ Revitalizing (Revitalisierung): Revitalisierung auf Grundlage der erhobenen Daten -> Bewertung der Geschäftsprozesse basierend auf der quantitativen und qualitativen Daten. (Vergleich externer und interner KPI)
+Bsp.:
+
++ Restructuring (Restrukturierung): 
++ Reframing (Einstellungsäderungen)
+
+
+
+3. Szenario: Reframing mit dem Ziel: bei diesem Segment, Reframing bei den MA zu erreichen. 
+Druck: neue Gegebenheiten anzupassen
+Aufgabe: MA zu überzeugen
+
++ Vorteile:
+ -> Angebot von Schulungen -> Kompetenzen von MA werden dadurch gefördert.
+
+
+- Nachteile:
+  -> führt zu Entlassung
+  -> MA können überfordert werden.
+
+
+
+----------------------------------------------------
+
+1. Unternehmensformen
++ Einzelunternehmen (haften mit ihrem gesamten Vermögen für die Firma)
++ Personengesellschaften (Eigentümer haften mit ihrem gesamten Vermögen für die Gesellschaft gesamtschuldnerisch)
++ Kapitalgesellschaft (Eigentümer haften mit ihrem Eigenkapital, Unternehmen haften mit ihrem Vermögen)
+  
+
+
+
+
+
+
+
+
+
+
+

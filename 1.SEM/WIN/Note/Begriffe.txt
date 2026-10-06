@@ -1,0 +1,11 @@
+Begriffe
+1. Data Science
+2. IOT
+3. Predictive Maintenance
+4. XML
+5. EDI
+6. IT-Infrastruktur
+7. CRM vs. CRM-Systeme
+8. Multi tenant
+9. Cloud Computing
+10. Losgröße 1

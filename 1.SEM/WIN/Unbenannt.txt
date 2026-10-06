@@ -1,0 +1,19 @@
+1. Industrie 4.0
+* Stichpunkt: 
++ Starke Individualisierung (bis zur Losgröße 1)
++ Selbstoptimierung, Selbstkonfiguration, Selbstdiagnose, Kognition
+
+2. Industrie 4.0 Vorgänge: 
++ CIM (Bestandteile: 
+CAD: rechnergestützte Konstruktion, Entwurf
+CAP: Arbeitsplanung, 
+CNC: Fertigung,
+CAQ: Qualitätskontrolle, 
+CAM, PPS, BDE)
+
+3. Smart Factory:
++ Internet der Dienste, der Dinge
+Smart Factory = Smart Mobility + Smart Logistics + Smart Grids + Smart Buildings + Smart Product
+
+
+4. IPv4, IPv6

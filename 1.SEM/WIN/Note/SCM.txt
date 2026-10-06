@@ -1,0 +1,15 @@
+SCM
+1. Herausforderungen:
+ + Komplexität
+ + Intransparenz
+ + Dynamik: (z.B. Bullwhip-Effekt = Peitschenschlag Effekt)
+    Ursachen  von Bullwhip-Effekt und Lösungen dazu:
+    * Price Fluctuation (z.B. Discounts, Aktionen) -> Everyday Low price.
+    * Order Batching ( z.B. hohe Kosten pro Austragsabwicklung, Transportkonsolidierung) -> frequent Ordering.
+    * Shortage Gaming ( fixe Bestellungen proportional zu alten)-> Forecast on sales histories.
+    * Forecast Inaccuracies ( z.B. unterschiedliche Prognosesysteme und Planungshorizonte, nicht synchronisierte Bestellungen)-> Information sharing.
+
+
+* NICHT RELEVANT: Supply Chain Leistungsunfähigkeit
+
+

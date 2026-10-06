@@ -1,0 +1,5 @@
+1. CRM vs. ERP-System
+Integration der CRM-Software in das ERP-System
++ horizontale Integration
+
+2. 

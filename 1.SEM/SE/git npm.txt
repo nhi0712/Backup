@@ -1,0 +1,12 @@
+git init  //Initialisierung
+git add .
+git commit -m "init"
+
+
+rm -rf .git  //remove alles, was grad in git gespeichert wurde
+
+git push -u origin main  //in GitHub hochladen
+git pull  // neue Info vom GitHub erhalten
+
+-------------
+npm install

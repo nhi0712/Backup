@@ -1,0 +1,15 @@
+Kategorisierung der Rechtformen
++ Personengesellschaften (
+	Einzelfirmen, 
+	Eingetragener Kaufmann (e.K.), 
+	Gesellschaft bürgerlichen Rechts (GbR), 
+	Offene Handelsgesellschaft (OHG), 
+	Kommanditgesellschaft (KG), GmbH & Co KG / SE & Co KG)
+-> Mindestens ein Eigentümer ist Vollhafter
+
++ Kapitalgesellschaften
+	Unternehmergesellschaft (UG)
+	Gesellschaft mit beschränkter Haftung (GmbH)
+	Englisch Ltd.
+	Aktiengesellschaft
+-> Haftung der 	Eigentümern nur mit Gesellschaftseinlagen
