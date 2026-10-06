@@ -1,0 +1,19 @@
+To Do
+
+1. Pitch (Erel & Lukas)
+
+2. Feedbacks einarbeiten
+   Market Sizing (SOM zu hoch) (Nhi)
+   BMC (Nhi)
+   Lastenheft (SMART) (Kevin)
+   Persona (Lukas)
+   MVP (Jonas) 
+   Stakeholdermanagement (Erel) 
+
+3. FrontEnd überarbeiten (Jonas)
+4. Demo aufnehmen (Jonas)
+5. Backend überarbeiten (Andre)
+6. Security -> für Basti wichtig (Andre)
+
+
+

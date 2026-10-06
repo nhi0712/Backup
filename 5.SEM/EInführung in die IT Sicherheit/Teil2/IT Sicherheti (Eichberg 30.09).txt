@@ -1,0 +1,91 @@
+IT Sicherheit (Eichberg 30.09)
+
+Ziel der IT Sicherheit --> Schutz von Systemne vor: 
+Ausfall (DDOS)
+Missbrauch (Bot netzwerk, Erpressung)
+Sabotage
+Spionage
+Manipulation
+Diebstahl
+
+-----------------
+
+WIchtig: Terminologie technisch erklären
+* local priviliege escalation vulnerability
+* fully working exploit proof-of-concept (PoC) --> Wieso funktioniert und manchmal nicht? --> muss klar sagen für welche Version, welche Gerät
+-> PoC: hier mit Dimensionen, Context gemeint
+
+
+-----------------
+
+Ransomware
+
+Kann man vor Ransomware schützen?
+
+-----------------
+
+wie sicher ist die Cloud?
+
+schöne Backup Strategie: 3-2-1 
+3 Backups, 2 Medien, 1 Drive (Read only) 
+
+------------------
+
+Wie unterscheidet UNICODE und UTF-8
+-------------------
+
+LTE, ESM
+
+-------------------
+Air-gapped computer
+
+
+---------
+Beispiel: Rowhammer attacks NVIDIA
+wann und wo ist der Bug in CPU, GPU relevant?
+
+
+-> z.B. SAP, die Kunde haben die Daten in dem Cloud laufen. 
+und es gibt 1 physische Rechner, wenn Bug in CPU ist, dann sind mehrere Virtuelle Maschine, die verbunden sind, werden angegriffen.
+
+
+-----------------------
+
+Zero-Day Exploit 
+-------------------------
+
+
+Prompt Injection
+
+-------------------
+Mean Time to Detection (MTTD)
+
+DoS--> nicht schwer zu erkennen, wann es stattfindet
+Ransomware -> nicht trivial
+-------------------
+Mean Time to Identify (MTTI)
+Was für Attacke? Wie? 
+-------------------
+Mean Time to Respond (MTTR)
+
+------------------
+Mean Time to Contain (MTTC)
+------------------
+Mean Time to Normal (MTTN) /Recover, Restore, Resolve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
