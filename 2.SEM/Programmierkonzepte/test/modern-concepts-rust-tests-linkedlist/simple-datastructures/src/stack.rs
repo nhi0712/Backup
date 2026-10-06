@@ -1,0 +1,179 @@
+use crate::datastructure::Datastructure;
+
+#[derive(Clone)]
+pub struct Node<T> {
+    pub data: T,
+    pub next: Option<Box<Node<T>>>,
+}
+
+#[derive(Clone)]
+pub struct Stack<T> {
+    pub head: Option<Box<Node<T>>>,
+    pub length: i32,
+}
+
+impl<T> Stack<T> {
+    pub fn new() -> Self {
+        Stack {
+            head: None,
+            length: 0,
+        }
+    }
+
+    // Gibt die Größe des Stacks zurück
+    pub fn size(&self) -> i32 {
+        self.length
+    }
+    
+    // Fügt ein Element oben auf den Stack
+    pub fn push(&mut self, data: T) {
+        let new_node = Box::new(Node {
+            data,
+            next: self.head.take(),
+        });
+        self.head = Some(new_node);
+        self.length += 1;
+    }
+
+    // Pop-Funktion: Entfernt das oberste Element vom Stack und gibt es zurück
+    pub fn pop(&mut self) -> Option<T> {
+        if let Some(node) = self.head.take() {
+            self.head = node.next;
+            self.length -= 1;
+            Some(node.data)
+        } else {
+            None // Wenn der Stack leer ist, geben wir None zurück
+        }
+    }
+    
+    // Gibt das oberste Element zurück, ohne es zu entfernen
+    pub fn peek(&self) -> Option<&T> {
+        self.head.as_ref().map(|node| &node.data)
+    }
+}
+
+
+
+
+
+// Implementierung des Datastructure-Traits
+impl<T> Datastructure for Stack<T>
+where
+    T: PartialEq + ToString,
+{
+    // Vergleicht zwei Datenstrukturen auf Gleichheit
+    fn equals(&self, other: &Self) -> bool {
+        if self.length != other.length {
+            return false;
+        }
+
+        let mut current_self = &self.head;
+        let mut current_other = &other.head;
+
+        while let (Some(node_self), Some(node_other)) = (current_self, current_other) {
+            if node_self.data != node_other.data {
+                return false;
+            }
+            current_self = &node_self.next;
+            current_other = &node_other.next;
+        }
+
+        true
+    }
+
+    // Gibt den Stack als String zurück
+    fn to_string(&self) -> String {
+        let mut result = String::new();
+        let mut current = &self.head;
+
+        while let Some(node) = current {
+            result.push_str(&node.data.to_string());
+            if node.next.is_some() {
+                result.push_str(" -> ");
+            }
+            current = &node.next;
+        }
+
+        result
+    }
+
+    // Überprüft, ob der Stack leer ist
+    fn is_empty(&self) -> bool {
+        self.length == 0
+    }
+
+    // Überprüft, ob der Stack voll ist - bei einer verketteten Liste 
+    // ist der Stack nie voll, daher immer false
+    //fn is_full(&mut self) -> bool {
+    //    false
+    //}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_new_stack() {
+        let stack: Stack<i32> = Stack::new();
+        assert!(stack.is_empty());
+        assert_eq!(stack.size(), 0);
+    }
+
+    #[test]
+    fn test_push() {
+        let mut stack = Stack::new();
+        stack.push(10);
+        stack.push(20);
+        assert_eq!(stack.size(), 2);
+        assert_eq!(stack.peek(), Some(&20));
+    }
+
+    #[test]
+    fn test_pop() {
+        let mut stack = Stack::new();
+        stack.push(30);
+        stack.push(40);
+        assert_eq!(stack.pop(), Some(40));
+        assert_eq!(stack.size(), 1);
+        assert_eq!(stack.pop(), Some(30));
+        assert_eq!(stack.size(), 0);
+        assert!(stack.is_empty());
+        assert_eq!(stack.pop(), None);
+    }
+
+    #[test]
+    fn test_peek() {
+        let mut stack = Stack::new();
+        stack.push(50);
+        assert_eq!(stack.peek(), Some(&50));
+
+        stack.pop();
+        assert_eq!(stack.peek(), None);
+    }
+
+    #[test]
+    fn test_to_string() {
+        let mut stack = Stack::new();
+        stack.push(60);
+        stack.push(70);
+        stack.push(80);
+        assert_eq!(stack.to_string(), "80 -> 70 -> 60");
+    }
+
+    #[test]
+    fn test_equals() {
+        let mut stack1 = Stack::new();
+        let mut stack2 = Stack::new();
+
+        stack1.push(90);
+        stack1.push(100);
+        stack2.push(90);
+        stack2.push(100);
+
+        assert!(stack1.equals(&stack2));
+
+        stack2.pop();
+        assert!(!stack1.equals(&stack2));
+    }
+}

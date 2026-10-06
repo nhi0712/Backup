@@ -1,0 +1,19 @@
+KS
+1. Zahlumrechnung
+2. Sliding-Window
+3. Routing
+4. IP Addressierung
+5. DNS
+6. Datensicherheit
+
+
+NIcht:
+Poisson Verteilung
+
+BS
+1. Speicherverwaltung
+2. Prozessverwaltung (Scheduling,
+3. UNIx Dateisystem
+4. Virtuelle Speicher (Auslagerungsstrategien)
+
+nicht: Second Chance 

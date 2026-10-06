@@ -1,0 +1,85 @@
+test-queue
+
+#[cfg(test)]
+mod tests {
+    use super::Queue;
+
+    #[test]
+    fn test_enqueue_dequeue() {
+        let mut queue = Queue::new();
+        assert!(queue.is_empty());
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        assert_eq!(queue.size(), 3);
+        assert_eq!(queue.dequeue(), Some(1));
+        assert_eq!(queue.dequeue(), Some(2));
+        assert_eq!(queue.dequeue(), Some(3));
+        assert!(queue.is_empty());
+    }
+
+    #[test]
+    fn test_peek() {
+        let mut queue = Queue::new();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        assert_eq!(queue.peek(), Some(&1));
+        queue.dequeue();
+        assert_eq!(queue.peek(), Some(&2));
+    }
+
+    #[test]
+    fn test_size() {
+        let mut queue = Queue::new();
+        assert_eq!(queue.size(), 0);
+
+        queue.enqueue(1);
+        assert_eq!(queue.size(), 1);
+
+        queue.enqueue(2);
+        assert_eq!(queue.size(), 2);
+
+        queue.dequeue();
+        assert_eq!(queue.size(), 1);
+    }
+
+    #[test]
+    fn test_is_empty() {
+        let mut queue = Queue::new();
+        assert!(queue.is_empty());
+
+        queue.enqueue(1);
+        assert!(!queue.is_empty());
+
+        queue.dequeue();
+        assert!(queue.is_empty());
+    }
+
+    #[test]
+    fn test_is_full() {
+        let mut queue = Queue::new();
+        assert!(!queue.is_full());
+
+        queue.enqueue(1);
+        assert!(queue.is_full());
+
+        queue.dequeue();
+        assert!(!queue.is_full());
+    }
+
+    #[test]
+    fn test_to_string() {
+        let mut queue = Queue::new();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        assert_eq!(queue.to_string(), "1 -> 2 -> 3");
+        queue.dequeue();
+        assert_eq!(queue.to_string(), "2 -> 3");
+    }
+}

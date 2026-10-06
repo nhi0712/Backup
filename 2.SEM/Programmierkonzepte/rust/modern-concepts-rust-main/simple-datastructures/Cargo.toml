@@ -1,0 +1,10 @@
+[package]
+name = "simple-datastructures"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "modern-concepts-rust-main"
+path = "src/main.rs"
+
+
