@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Angular / Build
+.angular/
+dist/
+out-tsc/
+
+# IDE / Editor
+.vscode/
+*.code-workspace
+
+# Logs
+*.log
+
+# Environment / lokale Konfiguration
+.env
+*.local
+
+# TypeScript Cache
+*.tsbuildinfo
+
+# Systemdateien
+.DS_Store
+Thumbs.db

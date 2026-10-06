@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Common page container styles used by all pages */
+.fruit-container,
+.vegetables-container,
+.bakery-container,
+.scan-container,
+.pay-container,
+.start-container,
+.minigame-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: visible;
+}

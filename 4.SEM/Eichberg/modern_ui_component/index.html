@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgaben-Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="app-header">
+      <div>
+        <h1>Web-Entwicklung Aufgabe</h1>
+        <p class="subtitle">Nhi Duong · WWI24SEA · SS2026 </p>
+      </div>
+
+      <button
+        class="btn btn-primary"
+        data-tooltip="Neue Aufgabe erstellen"
+        onclick="document.getElementById('task-dialog').showModal()">
+        + Neue Aufgabe
+      </button>
+    </header>
+
+    <section class="progress-section">
+      <div class="progress-header">
+        <span class="progress-label">Fortschritt</span>
+        <span class="progress-count">5 von 6 erledigt</span>
+      </div>
+      <progress value="5" max="6"></progress>
+    </section>
+
+    <ul class="task-list">
+
+      <li class="task-item done">
+        <label class="task-check">
+          <input type="checkbox" checked />
+          <span class="checkmark"></span>
+        </label>
+        <span class="task-title">HTML, CSS Grundstruktur erstellen</span>
+        <div class="task-actions">
+          <button class="btn btn-ghost btn-sm" data-tooltip="Bearbeiten">✏️</button>
+          <button class="btn btn-danger btn-sm" data-tooltip="Löschen">🗑️</button>
+        </div>
+      </li>
+
+      <li class="task-item done">
+        <label class="task-check">
+          <input type="checkbox" checked />
+          <span class="checkmark"></span>
+        </label>
+        <span class="task-title">Dialog/Modal für Einstellungen</span>
+        <div class="task-actions">
+          <button class="btn btn-ghost btn-sm" data-tooltip="Bearbeiten">✏️</button>
+          <button class="btn btn-danger btn-sm" data-tooltip="Löschen">🗑️</button>
+        </div>
+      </li>
+
+      <li class="task-item done">
+        <label class="task-check">
+          <input type="checkbox" checked />
+          <span class="checkmark"></span>
+        </label>
+        <span class="task-title">Custom Buttons und Controls</span>
+        <div class="task-actions">
+          <button class="btn btn-ghost btn-sm" data-tooltip="Bearbeiten">✏️</button>
+          <button class="btn btn-danger btn-sm" data-tooltip="Löschen">🗑️</button>
+        </div>
+      </li>
+
+      <li class="task-item done">
+        <label class="task-check">
+          <input type="checkbox" checked />
+          <span class="checkmark"></span>
+        </label>
+        <span class="task-title">Tooltips und Notifications (popover, etc.)</span>
+        <div class="task-actions">
+          <button class="btn btn-ghost btn-sm" data-tooltip="Bearbeiten">✏️</button>
+          <button class="btn btn-danger btn-sm" data-tooltip="Löschen">🗑️</button>
+        </div>
+      </li>
+
+      
+      <li class="task-item done">
+        <label class="task-check">
+          <input type="checkbox" checked />
+          <span class="checkmark"></span>
+        </label>
+        <span class="task-title">Loading States und Progress Bars</span>
+        <div class="task-actions">
+          <button class="btn btn-ghost btn-sm" data-tooltip="Bearbeiten">✏️</button>
+          <button class="btn btn-danger btn-sm" data-tooltip="Löschen">🗑️</button>
+        </div>
+      </li>
+
+        
+      <li class="task-item">
+        <label class="task-check">
+          <input type="checkbox" />
+          <span class="checkmark"></span>
+        </label>
+        <span class="task-title">Präsentation</span>
+        <div class="task-actions">
+          <button class="btn btn-ghost btn-sm" data-tooltip="Bearbeiten">✏️</button>
+          <button class="btn btn-danger btn-sm" data-tooltip="Löschen">🗑️</button>
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <dialog id="task-dialog">
+
+    <div class="dialog-header">
+      <h2>Neue Aufgabe</h2>
+      <button
+        class="btn-close"
+        onclick="document.getElementById('task-dialog').close()">
+        ✕
+      </button>
+    </div>
+
+    <div class="dialog-body">
+      <label class="field">
+        <span class="field-label">Aufgabe</span>
+        <input
+          class="field-input"
+          type="text"
+          placeholder="z. B. Login-Seite implementieren"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Priorität</span>
+        <select class="field-input">
+          <option> Niedrig</option>
+          <option selected> Mittel</option>
+          <option> Hoch</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Fälligkeitsdatum</span>
+        <input class="field-input" type="date" />
+      </label>
+    </div>
+
+    <div class="dialog-footer">
+      <button
+        id="cancel-btn"
+        class="btn btn-ghost"
+        onclick="document.getElementById('task-dialog').close()">
+        Abbrechen
+      </button>
+    
+      <button
+        id="submit-btn"
+        class="btn btn-primary"
+        onclick="handleSubmit()">
+        <span class="btn-label">Hinzufügen</span>
+        <span class="btn-spinner"></span>
+      </button>  
+    </div>
+
+  </dialog>
+
+
+  <div id="notification" popover="auto">
+    ✅ Aufgabe wurde hinzugefügt!
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const btn    = document.getElementById('submit-btn');
+      const cancel = document.getElementById('cancel-btn');
+
+      btn.classList.add('loading');
+      btn.disabled    = true;
+      cancel.disabled = true;
+
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.disabled    = false;
+        cancel.disabled = false;
+        document.getElementById('task-dialog').close();
+        document.getElementById('notification').showPopover();
+      }, 1500);
+    }
+  </script>
+
+</body>
+</html>
